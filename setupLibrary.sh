@@ -20,6 +20,15 @@ function addUserAccount() {
     sudo usermod -aG sudo "${username}"
 }
 
+# Add the new service account
+# Arguments:
+#   Account Username
+function addServiceAccount() {
+    local username=${1}
+
+    sudo useradd -r -s /sbin/nologin "${username}"
+}
+
 # Add the local machine public SSH Key for the new user account
 # Arguments:
 #   Account Username

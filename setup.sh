@@ -19,7 +19,6 @@ output_file="output.log"
 
 function main() {
     read -rp "Enter the username of the new user account:" username
-
     promptForPassword
 
     # Run setup functions
@@ -28,6 +27,16 @@ function main() {
     addUserAccount "${username}" "${password}"
 
     read -rp $'Paste in the public SSH key for the new user:\n' sshKey
+
+    read -rp "Enter the username of the Caddy service account:" caddyUsername
+    addServiceAccount "${caddyUsername}"
+
+    read -rp "Enter the username of the web service account:" wwwUsername
+    addServiceAccount "${wwwUsername}"
+
+    read -rp "Enter the username of the db backup service account:" backupUsername
+    addServiceAccount "${backupUsername}"
+
     echo 'Running setup script...'
     logTimestamp "${output_file}"
 
